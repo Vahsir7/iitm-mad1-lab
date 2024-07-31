@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home!</title>
+    <style>
+        .centered {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student list</h1>
+    <table>
+        {% if students %}
+        <tr>
+            <th>Sl. No.</th>
+            <th>Roll number</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Actions</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ student.roll_number }}</td>
+            <td>{{ student.first_name }}</td>
+            <td>{{ student.last_name }}</td>
+            <td>
+                <a href="/student/{{ student.student_id }}/Details" type="button">Details</a>
+                <a href="/student/{{ student.student_id }}/Edit" type="button">Edit</a>
+                <a href="/student/{{ student.student_id }}/Delete" type="button">Delete</a>
+            </td>    
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+        </tr>
+        {% endif %}
+        <tr>
+            <td colspan="5" class="centered">
+                <a href="/student/create">+ Add new student</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
